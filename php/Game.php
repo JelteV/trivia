@@ -165,6 +165,9 @@ class Game {
         $this->currentPlayer = $this->currentPlayer === count($this->players) ? 0 : $this->currentPlayer++;
     }
 
+    /**
+     * Ask a game question.
+     */
 	private function  askQuestion() {
 		if ($this->currentCategory() == "Pop")
 			$this->printMessage(array_shift($this->popQuestions));
@@ -176,6 +179,11 @@ class Game {
 			$this->printMessage(array_shift($this->rockQuestions));
 	}
 
+    /**
+     * The the current game question category.
+     *
+     * @return string
+     */
 	private function currentCategory() {
         // Could be done shorter.
 		if ($this->places[$this->currentPlayer] == 0) return "Pop";
@@ -190,6 +198,11 @@ class Game {
 		return "Rock";
 	}
 
+    /**
+     * Determines if the question of answered correctly.
+     *
+     * @return bool
+     */
 	private function correctAnswer() {
 		if ($this->inPenaltyBox[$this->currentPlayer]){
 			if ($this->isGettingOutOfPenaltyBox) {
@@ -227,6 +240,11 @@ class Game {
 		}
 	}
 
+    /**
+     * Determines if the question of answered incorrectly.
+     *
+     * @return bool
+     */
 	private function wrongAnswer(){
 		$this->printMessage("Question was incorrectly answered");
 		$this->printMessage($this->players[$this->currentPlayer] . " was sent to the penalty box");
@@ -236,7 +254,11 @@ class Game {
 		return true;
 	}
 
-
+    /**
+     * Determine if the player has won.
+     *
+     * @return bool
+     */
 	private function didPlayerWin() {
 		return !($this->purses[$this->currentPlayer] == 6);
 	}

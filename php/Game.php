@@ -17,7 +17,7 @@ class Game {
     private array $rockQuestions    = [];
 
     private int $currentPlayer = 0;
-    private int $isGettingOutOfPenaltyBox;
+    private bool $isGettingOutOfPenaltyBox;
 
     public function  __construct()
     {

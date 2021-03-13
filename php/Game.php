@@ -1,9 +1,11 @@
 <?php
+// Ref: move this method into class.
 function echoln($string) {
   echo $string."\n";
 }
 
 class Game {
+    // Ref: Give these vars a scope.
     var $players;
     var $places;
     var $purses ;
@@ -20,6 +22,7 @@ class Game {
     function  __construct(){
 
    	$this->players = array();
+   	    //Ref: Declarations could be done at the start.
         $this->places = array(0);
         $this->purses  = array(0);
         $this->inPenaltyBox  = array(0);
@@ -30,6 +33,7 @@ class Game {
         $this->rockQuestions = array();
 
         for ($i = 0; $i < 50; $i++) {
+            // Ref: create the questions through through a single function.
 			array_push($this->popQuestions, "Pop Question " . $i);
 			array_push($this->scienceQuestions, ("Science Question " . $i));
 			array_push($this->sportsQuestions, ("Sports Question " . $i));
@@ -37,6 +41,7 @@ class Game {
     	}
     }
 
+    // Ref: Rename this one to createQuestions.
 	function createRockQuestion($index){
 		return "Rock Question " . $index;
 	}
@@ -60,11 +65,13 @@ class Game {
 		return count($this->players);
 	}
 
+	// Ref: Rename method to turn.
 	function  roll($roll) {
 		echoln($this->players[$this->currentPlayer] . " is the current player");
 		echoln("They have rolled a " . $roll);
 
 		if ($this->inPenaltyBox[$this->currentPlayer]) {
+		    // Ref: implement method that represents the logic going to penalty box.
 			if ($roll % 2 != 0) {
 				$this->isGettingOutOfPenaltyBox = true;
 
@@ -107,8 +114,8 @@ class Game {
 			echoln(array_shift($this->rockQuestions));
 	}
 
-
 	function currentCategory() {
+        // Could be done shorter.
 		if ($this->places[$this->currentPlayer] == 0) return "Pop";
 		if ($this->places[$this->currentPlayer] == 4) return "Pop";
 		if ($this->places[$this->currentPlayer] == 8) return "Pop";
@@ -131,6 +138,7 @@ class Game {
 						.$this->purses[$this->currentPlayer]
 						. " Gold Coins.");
 
+                // Note: This looks weird...
 				$winner = $this->didPlayerWin();
 				$this->currentPlayer++;
 				if ($this->currentPlayer == count($this->players)) $this->currentPlayer = 0;
@@ -147,12 +155,14 @@ class Game {
 		} else {
 
 			echoln("Answer was corrent!!!!");
+			// Create method: EarnCoin
 		$this->purses[$this->currentPlayer]++;
 			echoln($this->players[$this->currentPlayer]
 					. " now has "
 					.$this->purses[$this->currentPlayer]
 					. " Gold Coins.");
 
+			// Note: This looks weird...
 			$winner = $this->didPlayerWin();
 			$this->currentPlayer++;
 			if ($this->currentPlayer == count($this->players)) $this->currentPlayer = 0;

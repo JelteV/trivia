@@ -206,7 +206,6 @@ class Game {
 
 				return $winner;
 			} else {
-				$this->currentPlayer++;
                 $this->selectNextPlayer();
 				return true;
 			}
@@ -233,8 +232,7 @@ class Game {
 		$this->printMessage($this->players[$this->currentPlayer] . " was sent to the penalty box");
 	$this->inPenaltyBox[$this->currentPlayer] = true;
 
-		$this->currentPlayer++;
-		if ($this->currentPlayer == count($this->players)) $this->currentPlayer = 0;
+        $this->selectNextPlayer();
 		return true;
 	}
 

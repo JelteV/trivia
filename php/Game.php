@@ -1,8 +1,8 @@
 <?php
 // Ref: move this method into class.
-function echoln($string) {
-  echo $string."\n";
-}
+//function $this->printMessage($string) {
+//  echo $string."\n";
+//}
 
 class Game {
     // Ref: Give these vars a scope.
@@ -22,6 +22,16 @@ class Game {
     public function  __construct()
     {
 
+    }
+
+    /**
+     * Print a message on screen
+     *
+     * @param string $message
+     */
+    private function printMessage(string $message)
+    {
+        echo "{$message}\n";
     }
 
     /**
@@ -65,8 +75,8 @@ class Game {
 	   $this->purses[$this->howManyPlayers()] = 0;
 	   $this->inPenaltyBox[$this->howManyPlayers()] = false;
 
-	    echoln($playerName . " was added");
-	    echoln("They are player number " . count($this->players));
+	    $this->printMessage($playerName . " was added");
+	    $this->printMessage("They are player number " . count($this->players));
 		return true;
 	}
 
@@ -76,25 +86,25 @@ class Game {
 
 	// Ref: Rename method to turn.
 	private function  roll(int $roll) {
-		echoln($this->players[$this->currentPlayer] . " is the current player");
-		echoln("They have rolled a " . $roll);
+		$this->printMessage($this->players[$this->currentPlayer] . " is the current player");
+		$this->printMessage("They have rolled a " . $roll);
 
 		if ($this->inPenaltyBox[$this->currentPlayer]) {
 		    // Ref: implement method that represents the logic going to penalty box.
 			if ($roll % 2 != 0) {
 				$this->isGettingOutOfPenaltyBox = true;
 
-				echoln($this->players[$this->currentPlayer] . " is getting out of the penalty box");
+				$this->printMessage($this->players[$this->currentPlayer] . " is getting out of the penalty box");
 			$this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] + $roll;
 				if ($this->places[$this->currentPlayer] > 11) $this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] - 12;
 
-				echoln($this->players[$this->currentPlayer]
+				$this->printMessage($this->players[$this->currentPlayer]
 						. "'s new location is "
 						.$this->places[$this->currentPlayer]);
-				echoln("The category is " . $this->currentCategory());
+				$this->printMessage("The category is " . $this->currentCategory());
 				$this->askQuestion();
 			} else {
-				echoln($this->players[$this->currentPlayer] . " is not getting out of the penalty box");
+				$this->printMessage($this->players[$this->currentPlayer] . " is not getting out of the penalty box");
 				$this->isGettingOutOfPenaltyBox = false;
 				}
 
@@ -103,10 +113,10 @@ class Game {
 		$this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] + $roll;
 			if ($this->places[$this->currentPlayer] > 11) $this->places[$this->currentPlayer] = $this->places[$this->currentPlayer] - 12;
 
-			echoln($this->players[$this->currentPlayer]
+			$this->printMessage($this->players[$this->currentPlayer]
 					. "'s new location is "
 					.$this->places[$this->currentPlayer]);
-			echoln("The category is " . $this->currentCategory());
+			$this->printMessage("The category is " . $this->currentCategory());
 			$this->askQuestion();
 		}
 
@@ -114,13 +124,13 @@ class Game {
 
 	private function  askQuestion() {
 		if ($this->currentCategory() == "Pop")
-			echoln(array_shift($this->popQuestions));
+			$this->printMessage(array_shift($this->popQuestions));
 		if ($this->currentCategory() == "Science")
-			echoln(array_shift($this->scienceQuestions));
+			$this->printMessage(array_shift($this->scienceQuestions));
 		if ($this->currentCategory() == "Sports")
-			echoln(array_shift($this->sportsQuestions));
+			$this->printMessage(array_shift($this->sportsQuestions));
 		if ($this->currentCategory() == "Rock")
-			echoln(array_shift($this->rockQuestions));
+			$this->printMessage(array_shift($this->rockQuestions));
 	}
 
 	private function currentCategory() {
@@ -140,9 +150,9 @@ class Game {
 	private function wasCorrectlyAnswered() {
 		if ($this->inPenaltyBox[$this->currentPlayer]){
 			if ($this->isGettingOutOfPenaltyBox) {
-				echoln("Answer was correct!!!!");
+				$this->printMessage("Answer was correct!!!!");
 			$this->purses[$this->currentPlayer]++;
-				echoln($this->players[$this->currentPlayer]
+				$this->printMessage($this->players[$this->currentPlayer]
 						. " now has "
 						.$this->purses[$this->currentPlayer]
 						. " Gold Coins.");
@@ -163,10 +173,10 @@ class Game {
 
 		} else {
 
-			echoln("Answer was corrent!!!!");
+			$this->printMessage("Answer was corrent!!!!");
 			// Create method: EarnCoin
 		$this->purses[$this->currentPlayer]++;
-			echoln($this->players[$this->currentPlayer]
+			$this->printMessage($this->players[$this->currentPlayer]
 					. " now has "
 					.$this->purses[$this->currentPlayer]
 					. " Gold Coins.");
@@ -181,8 +191,8 @@ class Game {
 	}
 
 	private function wrongAnswer(){
-		echoln("Question was incorrectly answered");
-		echoln($this->players[$this->currentPlayer] . " was sent to the penalty box");
+		$this->printMessage("Question was incorrectly answered");
+		$this->printMessage($this->players[$this->currentPlayer] . " was sent to the penalty box");
 	$this->inPenaltyBox[$this->currentPlayer] = true;
 
 		$this->currentPlayer++;

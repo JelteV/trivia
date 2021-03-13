@@ -21,7 +21,7 @@ class Game {
 
     function  __construct(){
 
-   	$this->players = array();
+   	    $this->players = array();
    	    //Ref: Declarations could be done at the start.
         $this->places = array(0);
         $this->purses  = array(0);
@@ -31,14 +31,6 @@ class Game {
         $this->scienceQuestions = array();
         $this->sportsQuestions = array();
         $this->rockQuestions = array();
-
-        for ($i = 0; $i < 50; $i++) {
-            // Ref: create the questions through through a single function.
-			array_push($this->popQuestions, "Pop Question " . $i);
-			array_push($this->scienceQuestions, ("Science Question " . $i));
-			array_push($this->sportsQuestions, ("Sports Question " . $i));
-			array_push($this->rockQuestions, $this->createRockQuestion($i));
-    	}
     }
 
     /**
@@ -46,6 +38,8 @@ class Game {
      */
     public function run()
     {
+        $this->createQuestions();
+
         do {
             // Ref: create method for throwing the dice.
             $this->roll(rand(0,5) + 1);
@@ -61,8 +55,13 @@ class Game {
     }
 
     // Ref: Rename this one to createQuestions.
-	function createRockQuestion($index){
-		return "Rock Question " . $index;
+	function createQuestions(){
+		 for ($i = 0; $i < 50; $i++) {
+            array_push($this->popQuestions, "Pop Question " . $i);
+            array_push($this->scienceQuestions, "Science Question " . $i);
+            array_push($this->sportsQuestions, "Sports Question " . $i);
+            array_push($this->rockQuestions, "Rock Question " . $i);
+        }
 	}
 
 	function isPlayable() {

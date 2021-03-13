@@ -1,8 +1,4 @@
 <?php
-// Ref: move this method into class.
-//function $this->printMessage($string) {
-//  echo $string."\n";
-//}
 
 class Game {
     private array $players          = [];

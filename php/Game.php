@@ -5,7 +5,6 @@
 //}
 
 class Game {
-    // Ref: Give these vars a scope.
     private array $players          = [];
     private array $places           = [0];
     private array $purses           = [0];
@@ -30,7 +29,7 @@ class Game {
     private function setHeaders()
     {
         // This fixes the issue that all the message where printed on one line.
-        header('Content-Type: text:plain');
+        header('Content-Type: text/plain');
     }
 
     /**

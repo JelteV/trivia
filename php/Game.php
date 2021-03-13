@@ -21,7 +21,16 @@ class Game {
 
     public function  __construct()
     {
+        $this->setHeaders();
+    }
 
+    /**
+     * Set the required headers for the game.
+     */
+    private function setHeaders()
+    {
+        // This fixes the issue that all the message where printed on one line.
+        header('Content-Type: text:plain');
     }
 
     /**

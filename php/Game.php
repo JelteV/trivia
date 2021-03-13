@@ -157,6 +157,14 @@ class Game {
 
 	}
 
+    /**
+     * Select the next player.
+     */
+	private function selectNextPlayer()
+    {
+        $this->currentPlayer = $this->currentPlayer === count($this->players) ? 0 : $this->currentPlayer++;
+    }
+
 	private function  askQuestion() {
 		if ($this->currentCategory() == "Pop")
 			$this->printMessage(array_shift($this->popQuestions));
@@ -194,18 +202,14 @@ class Game {
 
                 // Note: This looks weird...
 				$winner = $this->didPlayerWin();
-				$this->currentPlayer++;
-				if ($this->currentPlayer == count($this->players)) $this->currentPlayer = 0;
+				$this->selectNextPlayer();
 
 				return $winner;
 			} else {
 				$this->currentPlayer++;
-				if ($this->currentPlayer == count($this->players)) $this->currentPlayer = 0;
+                $this->selectNextPlayer();
 				return true;
 			}
-
-
-
 		} else {
 
 			$this->printMessage("Answer was corrent!!!!");
@@ -218,8 +222,7 @@ class Game {
 
 			// Note: This looks weird...
 			$winner = $this->didPlayerWin();
-			$this->currentPlayer++;
-			if ($this->currentPlayer == count($this->players)) $this->currentPlayer = 0;
+			$this->selectNextPlayer();
 
 			return $winner;
 		}

@@ -46,8 +46,7 @@ class Game {
         $this->createQuestions();
 
         do {
-            // Ref: create method for throwing the dice.
-            $this->roll(rand(0,5) + 1);
+            $this->roll($this->rollDice());
 
             if (rand(0,9) == 7) {
                 $notAWinner = $this->wrongAnswer();
@@ -57,6 +56,16 @@ class Game {
             }
 
         } while ($notAWinner);
+    }
+
+    /**
+     * Roll the game dice.
+     *
+     * @return int
+     */
+    private function rollDice(): int
+    {
+        return rand(0,5) + 1;
     }
 
     // Ref: Rename this one to createQuestions.

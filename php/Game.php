@@ -16,8 +16,9 @@ class Game {
     private int $currentPlayer = 0;
     private bool $isGettingOutOfPenaltyBox;
 
-
-
+    /**
+     * Initialize a new Game.
+     */
     public function  __construct()
     {
         $this->setHeaders();
@@ -47,8 +48,6 @@ class Game {
      */
     public function run()
     {
-        $test = '';
-
         if (count($this->players) < static::MINIMAL_NUMBER_OF_PLAYERS) {
             $this->printMessage("ERROR: A Minimum of two players or more required.");
             return;
@@ -78,7 +77,6 @@ class Game {
         return rand(0,5) + 1;
     }
 
-    // Ref: Rename this one to createQuestions.
 	private function createQuestions(){
 		 for ($i = 0; $i < 50; $i++) {
             array_push($this->popQuestions, "Pop Question " . $i);

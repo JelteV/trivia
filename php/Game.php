@@ -1,6 +1,8 @@
 <?php
 
 class Game {
+    private const MINIMAL_NUMBER_OF_PLAYERS = 2;
+
     private array $players          = [];
     private array $places           = [0];
     private array $purses           = [0];
@@ -13,6 +15,8 @@ class Game {
 
     private int $currentPlayer = 0;
     private bool $isGettingOutOfPenaltyBox;
+
+
 
     public function  __construct()
     {
@@ -43,6 +47,13 @@ class Game {
      */
     public function run()
     {
+        $test = '';
+
+        if (count($this->players) < static::MINIMAL_NUMBER_OF_PLAYERS) {
+            $this->printMessage("ERROR: A Minimum of two players or more required.");
+            return;
+        }
+
         $this->createQuestions();
 
         do {
@@ -75,10 +86,6 @@ class Game {
             array_push($this->sportsQuestions, "Sports Question " . $i);
             array_push($this->rockQuestions, "Rock Question " . $i);
         }
-	}
-
-	private function isPlayable() {
-		return ($this->howManyPlayers() >= 2);
 	}
 
 	public function add(string $playerName): bool {

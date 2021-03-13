@@ -41,6 +41,25 @@ class Game {
     	}
     }
 
+    /**
+     * Added method to run the game loop.
+     */
+    public function run()
+    {
+        do {
+            // Ref: create method for throwing the dice.
+            $this->roll(rand(0,5) + 1);
+
+            if (rand(0,9) == 7) {
+                $notAWinner = $this->wrongAnswer();
+            } else {
+                // Ref: Change name of this method.
+                $notAWinner = $this->wasCorrectlyAnswered();
+            }
+
+        } while ($notAWinner);
+    }
+
     // Ref: Rename this one to createQuestions.
 	function createRockQuestion($index){
 		return "Rock Question " . $index;

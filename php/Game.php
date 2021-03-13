@@ -56,7 +56,7 @@ class Game {
         $this->createQuestions();
 
         do {
-            $this->roll($this->rollDice());
+            $this->playTurn($this->rollDice());
 
             if (rand(0,9) == 7) {
                 $notAWinner = $this->wrongAnswer();
@@ -107,7 +107,7 @@ class Game {
 	}
 
     /**
-     *
+     * Get the number of players are in the game.
      *
      * @return int
      */
@@ -115,8 +115,12 @@ class Game {
 		return count($this->players);
 	}
 
-	// Ref: Rename method to turn.
-	private function  roll(int $roll) {
+    /**
+     * Run a players turn.
+     *
+     * @param int $roll The number rolled by the dice.
+     */
+	private function playTurn(int $roll) {
 		$this->printMessage($this->players[$this->currentPlayer] . " is the current player");
 		$this->printMessage("They have rolled a " . $roll);
 

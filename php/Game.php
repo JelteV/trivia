@@ -51,8 +51,7 @@ class Game {
             if (rand(0,9) == 7) {
                 $notAWinner = $this->wrongAnswer();
             } else {
-                // Ref: Change name of this method.
-                $notAWinner = $this->wasCorrectlyAnswered();
+                $notAWinner = $this->correctAnswer();
             }
 
         } while ($notAWinner);
@@ -160,7 +159,7 @@ class Game {
 		return "Rock";
 	}
 
-	private function wasCorrectlyAnswered() {
+	private function correctAnswer() {
 		if ($this->inPenaltyBox[$this->currentPlayer]){
 			if ($this->isGettingOutOfPenaltyBox) {
 				$this->printMessage("Answer was correct!!!!");

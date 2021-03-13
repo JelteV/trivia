@@ -48,7 +48,7 @@ class Game {
      */
     public function run()
     {
-        if (count($this->players) < static::MINIMAL_NUMBER_OF_PLAYERS) {
+        if ($this->howManyPlayers() < static::MINIMAL_NUMBER_OF_PLAYERS) {
             $this->printMessage("ERROR: A Minimum of two players or more required.");
             return;
         }
@@ -77,6 +77,9 @@ class Game {
         return rand(0,5) + 1;
     }
 
+    /**
+     * Generate the game questions.
+     */
 	private function createQuestions(){
 		 for ($i = 0; $i < 50; $i++) {
             array_push($this->popQuestions, "Pop Question " . $i);
@@ -86,6 +89,12 @@ class Game {
         }
 	}
 
+    /**
+     * Add the game players
+     *
+     * @param string $playerName
+     * @return bool
+     */
 	public function add(string $playerName): bool {
 	   array_push($this->players, $playerName);
 	   $this->places[$this->howManyPlayers()] = 0;
@@ -97,6 +106,11 @@ class Game {
 		return true;
 	}
 
+    /**
+     *
+     *
+     * @return int
+     */
 	private function howManyPlayers(): int {
 		return count($this->players);
 	}

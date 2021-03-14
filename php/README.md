@@ -9,4 +9,4 @@ De volgende issues wil ik aanpakken:
 * Laten zien hoe ik de applicatie zou refactoren als ik meer tijd had dan 2 uur.
 * De beste versie van de applicatie schrijven.
 
-Ik ongeveer een middag aan deze refactor slag gewerkt.
+Ik heb ongeveer een middag aan deze refactor slag gewerkt.

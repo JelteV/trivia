@@ -2,11 +2,10 @@
 
 include __DIR__.'/Game.php';
 
-  $aGame = new Game();
-  
-  $aGame->add("Chet");
-  $aGame->add("Pat");
-  $aGame->add("Sue");
+$aGame = new Game();
 
-  $aGame->run();
-  
+$aGame->addPlayer("Chet");
+$aGame->addPlayer("Pat");
+//$aGame->addPlayer("Sue");
+
+$aGame->run();
